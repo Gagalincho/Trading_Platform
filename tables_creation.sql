@@ -22,3 +22,18 @@ CREATE TABLE IF NOT EXISTS transactions (
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS holdings (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	user_id INT NOT NULL,
+	crypto_symbol VARCHAR(8) NOT NULL,
+	quantity DECIMAL(20, 6) NOT NULL DEFAULT 0.00,
+
+	CONSTRAINT fk_holding_user_id
+		FOREIGN KEY (user_id)
+		REFERENCES users (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+
+	UNIQUE (user_id, crypto_symbol)
+);
