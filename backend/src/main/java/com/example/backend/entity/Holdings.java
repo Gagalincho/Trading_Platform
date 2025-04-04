@@ -1,10 +1,12 @@
 package com.example.backend.entity;
 
+import java.math.BigDecimal;
+
 public class Holdings {
     private int id;
     private int userId;
     private String cryptoSymbol;
-    private double quantity;
+    private BigDecimal quantity;
 
     public int getId() {
         return id;
@@ -30,11 +32,12 @@ public class Holdings {
         this.cryptoSymbol = cryptoSymbol;
     }
 
-    public double getQuantity() {
+    public BigDecimal getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
+    
 }
