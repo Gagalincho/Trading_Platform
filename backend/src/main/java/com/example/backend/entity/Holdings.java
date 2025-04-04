@@ -39,4 +39,5 @@ public class Holdings {
     public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
+    
 }
