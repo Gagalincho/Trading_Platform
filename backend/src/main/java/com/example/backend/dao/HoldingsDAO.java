@@ -1,8 +1,9 @@
-package com.example.dao;
+package com.example.backend.dao;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -33,26 +34,40 @@ public class HoldingsDAO {
     }
 
     public List<Holdings> getHoldingsForUserByUserId(long userId) {
+
         String getAllHoldingsForUserByUserIdQuery = "SELECT * FROM holdings WHERE user_id = ?";
+
         return jdbcTemplate.query(getAllHoldingsForUserByUserIdQuery, (rs, rowNum) -> {
             Holdings holding = new Holdings();
-            holding.setId(rs.getInt("id"));
-            holding.setUserId(rs.getInt("user_id"));
+
+            holding.setId(rs.getLong("id"));
+            holding.setUserId(rs.getLong("user_id"));
             holding.setCryptoSymbol(rs.getString("crypto_symbol"));
             holding.setQuantity(rs.getBigDecimal("quantity"));
+
             return holding;
         }, userId);
     }
-    
+
     public Holdings getHoldingByUserIdAndSymbol(long userId, String symbol) {
+
         String getHoldingByUserIdAndSymbolQuery = "SELECT * FROM holdings WHERE user_id = ? AND crypto_symbol = ?";
-        return jdbcTemplate.queryForObject(getHoldingByUserIdAndSymbolQuery, (rs, rowNum) -> {
-            Holdings holding = new Holdings();
-            holding.setId(rs.getInt("id"));
-            holding.setUserId(rs.getInt("user_id"));
-            holding.setCryptoSymbol(rs.getString("crypto_symbol"));
-            holding.setQuantity(rs.getBigDecimal("quantity"));
-            return holding;
-        }, userId, symbol);
+
+        try {
+            
+            return jdbcTemplate.queryForObject(getHoldingByUserIdAndSymbolQuery, (rs, rowNum) -> {
+                Holdings holding = new Holdings();
+
+                holding.setId(rs.getLong("id"));
+                holding.setUserId(rs.getLong("user_id"));
+                holding.setCryptoSymbol(rs.getString("crypto_symbol"));
+                holding.setQuantity(rs.getBigDecimal("quantity"));
+
+                return holding;
+            }, userId, symbol);
+
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }

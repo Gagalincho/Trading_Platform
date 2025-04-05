@@ -3,18 +3,18 @@ package com.example.backend.model;
 import java.math.BigDecimal;
 
 public class User {
-    private int id;
+    private long id;
     private String username;
     private String password;
     private String name;
     private String email;
     private BigDecimal currentBalance;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
