@@ -36,6 +36,36 @@ public class UserDAO {
         }, id);
     }
 
+    public User findUserByUsername(String username) {
+        String selectUserByUsernameQuery = "SELECT * FROM users WHERE username = ?";
+
+        return jdbcTemplate.queryForObject(selectUserByUsernameQuery, (rs, rowNum) -> {
+            User user = new User();
+            user.setId(rs.getInt("id"));
+            user.setUsername(rs.getString("username"));
+            user.setPassword(rs.getString("password"));
+            user.setName(rs.getString("name"));
+            user.setEmail(rs.getString("email"));
+            user.setCurrentBalance(rs.getBigDecimal("current_balance"));
+            return user;
+        }, username);
+    }
+
+    public User findUserByEmail(String email) {
+        String selectUserByEmailQuery = "SELECT * FROM users WHERE email = ?";
+
+        return jdbcTemplate.queryForObject(selectUserByEmailQuery, (rs, rowNum) -> {
+            User user = new User();
+            user.setId(rs.getInt("id"));
+            user.setUsername(rs.getString("username"));
+            user.setPassword(rs.getString("password"));
+            user.setName(rs.getString("name"));
+            user.setEmail(rs.getString("email"));
+            user.setCurrentBalance(rs.getBigDecimal("current_balance"));
+            return user;
+        }, email);
+    }
+
     public BigDecimal getUserBalanceById(long id) {
         String getUserBalanceByIdQuery = "SELECT current_balance FROM users WHERE users_id = id";
 
