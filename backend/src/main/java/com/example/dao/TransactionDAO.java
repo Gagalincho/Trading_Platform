@@ -24,7 +24,7 @@ public class TransactionDAO {
                 transactionType);
     }
 
-    public List<Transaction> getAllTransactionsByUserId(long UserId) {
+    public List<Transaction> getTransactionsByUserId(long UserId) {
         String getAllTransactionsByUserIdQuery = "SELECT * FROM transactions WHERE user_id = ?";
         return jdbcTemplate.query(getAllTransactionsByUserIdQuery, (rs, rowNum) -> {
             Transaction transaction = new Transaction();
@@ -39,7 +39,7 @@ public class TransactionDAO {
         }, UserId);
     }
 
-    public List<Transaction> getAllTransactionsByUserIdForTransactionTypeQuery(long userId, String transactionType) {
+    public List<Transaction> getTransactionsByUserIdForTransactionTypeQuery(long userId, String transactionType) {
         String getAllTransactionsByUserIdForTransactionTypeQuery = "SELECT * FROM transactions WHERE user_id = ? AND transaction_type = ?";
         return jdbcTemplate.query(getAllTransactionsByUserIdForTransactionTypeQuery, (rs, rowNum) -> {
             Transaction transaction = new Transaction();
@@ -57,5 +57,10 @@ public class TransactionDAO {
     public int deleteTransactionsByUserId(long userId) {
         String deleteTransactionsByUserIdQuery = "DELETE FROM transactions WHERE user_id = ?";
         return jdbcTemplate.update(deleteTransactionsByUserIdQuery, userId);
+    }
+
+    public int deleteTransactionById(long transactionId) {
+        String deleteTransactionByIdQuery = "DELETE FROM transactions WHERE id = ?";
+        return jdbcTemplate.update(deleteTransactionByIdQuery, transactionId);
     }
 }

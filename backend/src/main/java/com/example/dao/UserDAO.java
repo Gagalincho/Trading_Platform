@@ -16,7 +16,7 @@ public class UserDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public int createUser(String username, String password, String name, String email, BigDecimal balance) {
+    public int createUser(String username, String password, String name, String email) {
         String createUserQuery = "INSERT INTO users (username, password, name, email) VALUES (?, ?, ?, ?)";
         return jdbcTemplate.update(createUserQuery, username, password, name, email);
     }
