@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.NoTransactionException;
 
 import com.example.backend.error.user.NoUserWithSuchIdExistsException;
 import com.example.backend.dao.TransactionDAO;

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dao.HoldingsDAO;
-import com.example.backend.error.user.NoUserWithSuchIdExistsException;
 import com.example.backend.model.Holdings;
 
 @Service
