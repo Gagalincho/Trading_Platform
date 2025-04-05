@@ -24,6 +24,14 @@ public class UserService {
         return userDAO.findUserById(id);
     }
 
+    public User findUserByUsername(String username) {
+        return userDAO.findUserByUsername(username);
+    }
+
+    public User findUserByEmail(String email) {
+        return userDAO.findUserByEmail(email);
+    }
+
     public BigDecimal getUserBalanceById(long id) {
         return userDAO.getUserBalanceById(id);
     }
