@@ -1,4 +1,4 @@
-package com.example.backend.entity;
+package com.example.backend.model;
 
 import java.math.BigDecimal;
 
@@ -39,5 +39,5 @@ public class Holdings {
     public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
-    
+
 }

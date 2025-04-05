@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.backend.entity.Holdings;
+import com.example.backend.model.Holdings;
 
 @Repository
 public class HoldingsDAO {
