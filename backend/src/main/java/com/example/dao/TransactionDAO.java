@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.backend.entity.Transaction;
+import com.example.backend.model.Transaction;
 
 @Repository
 public class TransactionDAO {

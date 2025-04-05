@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.backend.entity.User;
+import com.example.backend.model.User;
 
 @Repository
 public class UserDAO {
