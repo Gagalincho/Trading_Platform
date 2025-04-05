@@ -3,27 +3,27 @@ package com.example.backend.model;
 import java.math.BigDecimal;
 
 public class Transaction {
-    private int id;
-    private int userId;
+    private long id;
+    private long userId;
     private String cryptoSymbol;
     private BigDecimal quantity;
     private BigDecimal priceAtTransaction;
     private String transactionType;
     private String transactionDate;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 

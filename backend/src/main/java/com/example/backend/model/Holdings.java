@@ -3,24 +3,24 @@ package com.example.backend.model;
 import java.math.BigDecimal;
 
 public class Holdings {
-    private int id;
-    private int userId;
+    private long id;
+    private long userId;
     private String cryptoSymbol;
     private BigDecimal quantity;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
