@@ -5,11 +5,13 @@ import java.math.BigDecimal;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dao.UserDAO;
+import com.example.backend.error.user.InvalidPasswordException;
 import com.example.backend.error.user.NoUserWithSuchEmailExistsException;
 import com.example.backend.error.user.NoUserWithSuchIdExistsException;
 import com.example.backend.error.user.NoUserWithSuchUsernameExistsException;
 import com.example.backend.error.user.UsernameAlreadyExistsException;
 import com.example.backend.model.User;
+import com.example.backend.util.PasswordUtil;
 
 @Service
 public class UserService {
@@ -21,13 +23,28 @@ public class UserService {
     }
 
     public int createUser(String username, String password, String name, String email) {
-        User user = userDAO.findUserByUsername(username);
 
-        if (user != null) {
+        if (userDAO.findUserByUsername(username) == null) {
             throw new UsernameAlreadyExistsException("Username already exists");
         }
 
-        return userDAO.createUser(username, password, name, email);
+        String hashedPassword = PasswordUtil.hashPassword(password);
+
+        return userDAO.createUser(username, hashedPassword, name, email);
+    }
+
+    public boolean login(String username, String rawPassword) {
+        User user = userDAO.findUserByUsername(username);
+    
+        if (user == null) {
+            throw new NoUserWithSuchUsernameExistsException("User not found");
+        }
+    
+        if (!PasswordUtil.matches(rawPassword, user.getPassword())) {
+            throw new InvalidPasswordException("Incorrect password");
+        }
+    
+        return true;
     }
 
     public User findUserById(long id) {
