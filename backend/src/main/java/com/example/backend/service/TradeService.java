@@ -2,9 +2,12 @@ package com.example.backend.service;
 
 import java.math.BigDecimal;
 
+import org.springframework.stereotype.Service;
+
 import com.example.backend.error.trade.InsufficientFundsException;
 import com.example.backend.model.Holdings;
 
+@Service
 public class TradeService {
 
     private final UserService userService;
