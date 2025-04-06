@@ -41,9 +41,9 @@ public class UserController {
         return ResponseEntity.ok("Login successful");
     }
 
-    @GetMapping("/profile/{id}")
-    public ResponseEntity<UserDTO> getProfile(@PathVariable long id) {
-        User user = userService.findUserById(id);
+    @GetMapping("/{username}/profile")
+    public ResponseEntity<UserDTO> getProfile(@PathVariable String username) {
+        User user = userService.findUserByUsername(username);
         return ResponseEntity.ok(UserMapper.toDTO(user));
     }
 }
