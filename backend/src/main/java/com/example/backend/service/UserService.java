@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dao.UserDAO;
+import com.example.backend.error.user.FieldsCannotBeEmptyException;
 import com.example.backend.error.user.InvalidPasswordException;
 import com.example.backend.error.user.NoUserWithSuchEmailExistsException;
 import com.example.backend.error.user.NoUserWithSuchIdExistsException;
@@ -24,6 +25,8 @@ public class UserService {
 
     public int createUser(String username, String password, String name, String email) {
 
+        validateRegistrationFields(username, password, name, email);
+
         if (userDAO.findUserByUsername(username) == null) {
             throw new UsernameAlreadyExistsException("Username already exists");
         }
@@ -34,6 +37,9 @@ public class UserService {
     }
 
     public boolean login(String username, String rawPassword) {
+
+        validateLoginFields(username, rawPassword);
+
         User user = userDAO.findUserByUsername(username);
     
         if (user == null) {
@@ -89,5 +95,21 @@ public class UserService {
         if (userDAO.findUserById(userId) == null) {
             throw new NoUserWithSuchIdExistsException("User not found");
         }
+    }
+
+    public void validateRegistrationFields(String username, String password, String name, String email) {
+        if (isNullOrBlank(username) || isNullOrBlank(password) || isNullOrBlank(name) || isNullOrBlank(email)) {
+            throw new FieldsCannotBeEmptyException("All fields are required and must not be empty");
+        }
+    }
+
+    public void validateLoginFields(String username, String password) {
+        if (isNullOrBlank(username) || isNullOrBlank(password)) {
+            throw new FieldsCannotBeEmptyException("Username and password must not be empty");
+        }
+    }
+    
+    private boolean isNullOrBlank(String value) {
+        return value == null || value.trim().isEmpty();
     }
 }

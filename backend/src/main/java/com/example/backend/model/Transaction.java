@@ -1,6 +1,7 @@
 package com.example.backend.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class Transaction {
     private long id;
@@ -9,7 +10,7 @@ public class Transaction {
     private BigDecimal quantity;
     private BigDecimal priceAtTransaction;
     private String transactionType;
-    private String transactionDate;
+    private LocalDateTime transactionDate;
 
     public long getId() {
         return id;
@@ -59,11 +60,11 @@ public class Transaction {
         this.transactionType = transactionType;
     }
 
-    public String getTransactionDate() {
+    public LocalDateTime getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(String transactionDate) {
+    public void setTransactionDate(LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
     }
 

@@ -36,7 +36,7 @@ public class TransactionDAO {
             transaction.setQuantity(rs.getBigDecimal("quantity"));
             transaction.setPriceAtTransaction(rs.getBigDecimal("price_at_transaction"));
             transaction.setTransactionType(rs.getString("transaction_type"));
-            transaction.setTransactionDate(rs.getString("transaction_date"));
+            transaction.setTransactionDate(rs.getTimestamp("timestamp").toLocalDateTime());
 
             return transaction;
         }, UserId);
@@ -57,7 +57,7 @@ public class TransactionDAO {
                 transaction.setQuantity(rs.getBigDecimal("quantity"));
                 transaction.setPriceAtTransaction(rs.getBigDecimal("price_at_transaction"));
                 transaction.setTransactionType(rs.getString("transaction_type"));
-                transaction.setTransactionDate(rs.getString("transaction_date"));
+                transaction.setTransactionDate(rs.getTimestamp("timestamp").toLocalDateTime());
 
                 return transaction;
             }, transactionId);
@@ -80,7 +80,7 @@ public class TransactionDAO {
             transaction.setQuantity(rs.getBigDecimal("quantity"));
             transaction.setPriceAtTransaction(rs.getBigDecimal("price_at_transaction"));
             transaction.setTransactionType(rs.getString("transaction_type"));
-            transaction.setTransactionDate(rs.getString("transaction_date"));
+            transaction.setTransactionDate(rs.getTimestamp("timestamp").toLocalDateTime());
 
             return transaction;
         }, userId, transactionType);
