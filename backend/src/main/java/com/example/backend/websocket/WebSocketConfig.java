@@ -17,6 +17,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(cryptoWebSocketHandler, "/ws/crypto").setAllowedOrigins("*");
+        registry.addHandler(cryptoWebSocketHandler, "/ws/crypto").setAllowedOrigins("http://localhost:3000");
     }
 }
