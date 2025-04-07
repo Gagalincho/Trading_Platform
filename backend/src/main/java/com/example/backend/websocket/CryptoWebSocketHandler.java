@@ -3,8 +3,6 @@ package com.example.backend.websocket;
 import com.example.backend.dto.CryptoPriceDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.micrometer.common.lang.NonNull;
-
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
